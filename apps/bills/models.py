@@ -5,15 +5,27 @@ from apps.branches.models import Branch
 
 
 class Bill(TimestampedModel):
+    description = models.CharField(max_length=255, blank=True)
     debit = models.DecimalField(max_digits=8, decimal_places=2, blank=False)
     due_date = models.DateField(blank=False)
-    payment_date = models.DateField(null=True, blank=True)
     branch = models.ForeignKey(Branch, related_name='bills', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} - {} - {}'.format(self.branch.name, self.debit, self.due_date)
+        return self.description if self.description else '{} - {}'.format(self.branch.name, self.debit)
 
     class Meta:
         ordering = ('due_date',)
-        verbose_name_plural = "bills"
+        verbose_name_plural = 'bills'
+
+
+class Payment(models.Model):
+    payment_date = models.DateField(blank=False)
+    bill = models.ForeignKey(Bill, related_name='payments', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.payment_date)
+
+    class Meta:
+        ordering = ('payment_date',)
+        verbose_name_plural = 'payments'
 
