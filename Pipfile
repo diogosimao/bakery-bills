@@ -21,8 +21,9 @@ MarkupSafe = "==1.0"
 requests = "==2.18.4"
 uritemplate = "==3.0.0"
 "urllib3" = "==1.22"
-Pygments = "*"
-markdown = "*"
+Pygments = "==2.2.0"
+Markdown = "==2.6.9"
+whitenoise = "*"
 
 
 [dev-packages]
