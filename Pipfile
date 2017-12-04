@@ -8,7 +8,7 @@ name = "pypi"
 [packages]
 
 djangorestframework = "==3.7.3"
-Django = "==2.0"
+django = "==2.0"
 pytz = "==2017.3"
 coreapi = "==2.3.3"
 certifi = "==2017.11.5"
@@ -16,14 +16,15 @@ chardet = "==3.0.4"
 coreschema = "==0.0.4"
 idna = "==2.6"
 itypes = "==1.1.0"
-"Jinja2" = "==2.10"
+"jinja2" = "==2.10"
 MarkupSafe = "==1.0"
 requests = "==2.18.4"
 uritemplate = "==3.0.0"
 "urllib3" = "==1.22"
 Pygments = "==2.2.0"
 Markdown = "==2.6.9"
-whitenoise = "*"
+whitenoise = "==3.3.1"
+coverage = "==4.4.2"
 
 
 [dev-packages]
