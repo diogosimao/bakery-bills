@@ -18,6 +18,4 @@ class BillViewSet(viewsets.ModelViewSet):
     queryset = Bill.objects.all()
     serializer_class = BillSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(branch_id=self.request.branch.id)
 
