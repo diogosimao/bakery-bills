@@ -11,7 +11,7 @@ class Bill(TimestampedModel):
     branch = models.ForeignKey(Branch, related_name='bills', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.description if self.description else '{} - {}'.format(self.branch.name, self.debit)
+        return self.description if self.description else '{0} - {1:.2f}'.format(self.branch.__str__(), self.debit)
 
     class Meta:
         ordering = ('due_date',)
