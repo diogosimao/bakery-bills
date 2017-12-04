@@ -16,15 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
-from rest_framework import schemas
-schemas.get_schema_view()
+
 
 bills_patterns = ([
-                      url('bills', include('apps.bills.urls')),
+                      url('bills/', include('apps.bills.urls')),
                   ], 'bills')
 
 branches_patterns = ([
-                         url('branches', include('apps.branches.urls')),
+                         url('branches/', include('apps.branches.urls')),
                      ], 'branches')
 
 urlpatterns = [
