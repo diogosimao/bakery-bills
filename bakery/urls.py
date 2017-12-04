@@ -28,7 +28,7 @@ branches_patterns = ([
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^docs/', include_docs_urls(title='Bakery bills API Documentation')),
+    url(r'^docs/', include_docs_urls(title='Bakery bills API Documentation', public=False)),
     url(r'^api/', include(bills_patterns)),
     url(r'^api/', include(branches_patterns)),
 ]
