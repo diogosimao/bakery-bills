@@ -35,3 +35,8 @@
 
 Development server should be up at [http://localhost:8000/](http://127.0.0.1:8000/).
 
+## Run tests
+
+1. Run `. ./bin/run_tests.sh` 
+
+After that your browser should open with coverage report. 
