@@ -1,13 +1,18 @@
 from rest_framework import serializers
 
-from .models import Bill
+from .models import Bill, Payment
 
 
 class BillSerializer(serializers.ModelSerializer):
-    bill = serializers.ReadOnlyField(source='branch')
 
     class Meta:
         model = Bill
-        fields = ('id', 'debit', 'due_date', 'payment_date', 'bill', 'branch')
-        # read_only_fields = ('slug', 'name', 'channel')
+        fields = ('description', 'debit', 'due_date', 'branch')
+
+
+class PaymentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Payment
+        fields = ('payment_date', 'bill')
 
