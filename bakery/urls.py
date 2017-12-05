@@ -19,11 +19,11 @@ from rest_framework.documentation import include_docs_urls
 
 
 bills_patterns = ([
-                      url('bills/', include('apps.bills.urls')),
+                      url('', include('apps.bills.urls')),
                   ], 'bills')
 
 branches_patterns = ([
-                         url('branches/', include('apps.branches.urls')),
+                         url('', include('apps.branches.urls')),
                      ], 'branches')
 
 urlpatterns = [
