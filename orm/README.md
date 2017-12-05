@@ -1,3 +1,3 @@
 # bakery-bills
 
-## Future ORM plans
+## Just some ideas and future ORM plans
