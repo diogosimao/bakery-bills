@@ -2,7 +2,7 @@ from datetime import datetime
 from django.test import TestCase
 
 from apps.bills.models import Bill, Payment
-from apps.branches.tests.test_models import create_branch
+from apps.branches.tests.test_models import create_branch, SAMPLE_TEST_DICT
 
 
 def create_bill(**kwargs):
@@ -16,7 +16,7 @@ def create_payment(**kwargs):
 class BillModelTestCase(TestCase):
 
     def setUp(self):
-        self.branch = create_branch(address='Rua A', city='Barra Mansa', state='Rio de Janeiro')
+        self.branch = create_branch(**SAMPLE_TEST_DICT)
         self.branch.save()
         self.bill = create_bill(description='Whole wheat', debit=90.00, due_date=datetime.now(), branch=self.branch)
 
@@ -30,16 +30,11 @@ class BillModelTestCase(TestCase):
     def test__model_can_return_bill_description(self):
         self.assertEqual(self.bill.__str__(), 'Whole wheat')
 
-    def test__model_can_not_return_bill_description(self):
-        bill = create_bill(debit=90.00, due_date=datetime.now(), branch=self.branch)
-        bill.save()
-        self.assertEqual(bill.__str__(), '{} - 90.00'.format(self.branch.__str__()))
-
 
 class PaymentModelTestCase(TestCase):
 
     def setUp(self):
-        self.branch = create_branch(address='Rua A', city='Barra Mansa', state='Rio de Janeiro')
+        self.branch = create_branch(**SAMPLE_TEST_DICT)
         self.branch.save()
         self.bill = create_bill(description='Whole wheat', debit=90.00, due_date=datetime.now(), branch=self.branch)
         self.bill.save()

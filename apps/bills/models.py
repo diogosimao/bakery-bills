@@ -5,13 +5,13 @@ from apps.branches.models import Branch
 
 
 class Bill(TimestampedModel):
-    description = models.CharField(max_length=255, blank=True)
-    debit = models.DecimalField(max_digits=8, decimal_places=2, blank=False)
-    due_date = models.DateField(blank=False)
+    description = models.CharField(max_length=255, blank=False, null=False)
+    debit = models.DecimalField(max_digits=8, decimal_places=2, blank=False, null=False)
+    due_date = models.DateField(blank=False, null=False)
     branch = models.ForeignKey(Branch, related_name='bills', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.description if self.description else '{0} - {1:.2f}'.format(self.branch.__str__(), self.debit)
+        return self.description
 
     class Meta:
         ordering = ('due_date',)
@@ -19,7 +19,7 @@ class Bill(TimestampedModel):
 
 
 class Payment(models.Model):
-    payment_date = models.DateField(blank=False)
+    payment_date = models.DateField(blank=False, null=False)
     bill = models.OneToOneField(Bill, related_name='payments', on_delete=models.CASCADE)
 
     def __str__(self):
