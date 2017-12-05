@@ -1,4 +1,5 @@
 from django.db import models
+
 from bakery.core.models import TimestampedModel
 
 

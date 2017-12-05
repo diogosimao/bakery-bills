@@ -1,6 +1,7 @@
+from rest_framework import viewsets
+
 from .models import Branch
 from .serializers import BranchSerializer
-from rest_framework import viewsets
 
 
 class BranchViewSet(viewsets.ModelViewSet):
