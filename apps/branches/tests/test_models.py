@@ -7,19 +7,19 @@ SAMPLE_TEST_DICT = {'description': 'Matriz', 'address': 'Rua A', 'city': 'Barra 
 
 
 def create_branch(**kwargs):
-    return Branch(**kwargs)
+    branch = Branch(**kwargs)
+    branch.save()
+    return branch
 
 
 class BranchModelTestCase(TestCase):
 
     def setUp(self):
+        self.old_count = Branch.objects.count()
         self.branch = create_branch(**SAMPLE_TEST_DICT)
 
     def test__model_can_create_branch(self):
-        old_count = Branch.objects.count()
-        self.branch.save()
-        new_count = Branch.objects.count()
-        self.assertNotEqual(old_count, new_count)
+        self.assertNotEqual(self.old_count, Branch.objects.count())
         self.assertTrue(isinstance(self.branch, Branch))
 
     def test__model_can_return_branch_description(self):
