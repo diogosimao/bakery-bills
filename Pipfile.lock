@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a057fb2e58db78f721f33cc00471c5b5c74bfc5c0b28574a4ed5b3503418cdad"
+            "sha256": "5184b8721c82944496f0306e775ef1d7b7b44abc0725ac139b217181986466c4"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -115,6 +115,13 @@
                 "sha256:067960e5e9e5586d3b2d53a1d626c4800dc33cd8309487d404fc63355674556f"
             ],
             "version": "==3.7.3"
+        },
+        "drf-nested-routers": {
+            "hashes": [
+                "sha256:3346bcfb151d221d499b3b7932cc6e5cee005ea50f1343a2f5cd2f85e7b1d77f",
+                "sha256:818fcc37b6cafff52f4afae012b8de85970a1b931f1e47c2f07a24fd141eb476"
+            ],
+            "version": "==0.90.0"
         },
         "idna": {
             "hashes": [
