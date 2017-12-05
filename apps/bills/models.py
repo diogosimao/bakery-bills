@@ -20,7 +20,7 @@ class Bill(TimestampedModel):
 
 class Payment(models.Model):
     payment_date = models.DateField(blank=False)
-    bill = models.ForeignKey(Bill, related_name='payments', on_delete=models.CASCADE)
+    bill = models.OneToOneField(Bill, related_name='payments', on_delete=models.CASCADE)
 
     def __str__(self):
         return '{}'.format(self.payment_date)
