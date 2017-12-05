@@ -43,7 +43,7 @@ class PaymentModelTestCase(TestCase):
         self.branch.save()
         self.bill = create_bill(description='Whole wheat', debit=90.00, due_date=datetime.now(), branch=self.branch)
         self.bill.save()
-        self.payment = create_payment(payment_date='2017/12/01', bill=self.bill)
+        self.payment = create_payment(payment_date='2017-12-01', bill=self.bill)
 
     def test__model_can_create_payment(self):
         old_count = Payment.objects.count()
@@ -53,5 +53,5 @@ class PaymentModelTestCase(TestCase):
         self.assertTrue(isinstance(self.payment, Payment))
 
     def test__model_can_return_payment_str(self):
-        self.assertEqual(self.payment.__str__(), '2017/12/01')
+        self.assertEqual(self.payment.__str__(), '2017-12-01')
 
