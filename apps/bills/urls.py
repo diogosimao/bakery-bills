@@ -9,7 +9,7 @@ from .views import BillViewSet, PaymentViewSet
 router = DefaultRouter(trailing_slash=True)
 router.register(r'bills', BillViewSet, base_name='bills')
 
-bills_router = routers.NestedSimpleRouter(router, r'bills', lookup='bill', )
+bills_router = routers.NestedSimpleRouter(router, r'bills', lookup='bill')
 bills_router.register(r'payment', PaymentViewSet, base_name='bill-payment')
 
 

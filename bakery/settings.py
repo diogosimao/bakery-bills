@@ -131,4 +131,4 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
 ]
 
-APPEND_SLASH = False
+APPEND_SLASH = True
