@@ -3,9 +3,9 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from apps.bills.serializers import BillSerializer
+from apps.bills.serializers import BillSerializer, PaymentSerializer
 from apps.branches.tests.test_models import create_branch, BRANCH_SAMPLE_TEST_DICT
-from .test_models import create_bill, BILL_SAMPLE_TEST_DICT
+from .test_models import create_bill, create_payment, BILL_SAMPLE_TEST_DICT
 
 
 class CreateBillTest(APITestCase):
@@ -48,5 +48,53 @@ class DeleteBillTest(APITestCase):
 
     def test__delete_bill(self):
         response = self.client.delete(reverse('bills:bills-detail', args=[self.bill.id]))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+
+class CreatePaymentTest(APITestCase):
+    def setUp(self):
+        branch = create_branch(**BRANCH_SAMPLE_TEST_DICT)
+        self.data = BILL_SAMPLE_TEST_DICT
+        self.bill = create_bill(**BILL_SAMPLE_TEST_DICT, branch=branch)
+        self.data = {'payment_date': '2017-12-01', 'bill': self.bill.id}
+
+    def test__create_payment(self):
+        response = self.client.post(reverse('bills:bill-payment-list', args=[self.bill.id]), self.data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+
+class ReadPaymentTest(APITestCase):
+    def setUp(self):
+        branch = create_branch(**BRANCH_SAMPLE_TEST_DICT)
+        self.bill = create_bill(**BILL_SAMPLE_TEST_DICT, branch=branch)
+        self.payment = create_payment(payment_date='2017-12-01', bill=self.bill)
+
+    def test__read_payment_detail(self):
+        response = self.client.get(reverse('bills:bill-payment-detail', args=[self.bill.id, self.payment.id]))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class UpdatePaymentTest(APITestCase):
+    def setUp(self):
+        branch = create_branch(**BRANCH_SAMPLE_TEST_DICT)
+        self.bill = create_bill(**BILL_SAMPLE_TEST_DICT, branch=branch)
+        self.payment = create_payment(payment_date='2017-12-01', bill=self.bill)
+        self.data = PaymentSerializer(self.payment).data
+        self.data.update({'due_date': '2000-12-12'})
+
+    def test__update_payment_detail(self):
+        response = self.client.put(reverse('bills:bill-payment-detail', args=[self.bill.id, self.payment.id]),
+                                   self.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class DeletePaymentTest(APITestCase):
+    def setUp(self):
+        branch = create_branch(**BRANCH_SAMPLE_TEST_DICT)
+        self.bill = create_bill(**BILL_SAMPLE_TEST_DICT, branch=branch)
+        self.payment = create_payment(payment_date='2017-12-01', bill=self.bill)
+
+    def test__delete_payment(self):
+        response = self.client.delete(reverse('bills:bill-payment-detail', args=[self.bill.id, self.payment.id]))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
