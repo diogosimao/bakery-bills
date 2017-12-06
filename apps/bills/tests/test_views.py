@@ -41,12 +41,12 @@ class UpdateBillTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-class DeleteBranchTest(APITestCase):
+class DeleteBillTest(APITestCase):
     def setUp(self):
         branch = create_branch(**BRANCH_SAMPLE_TEST_DICT)
         self.bill = create_bill(**BILL_SAMPLE_TEST_DICT, branch=branch)
 
-    def test_delete_branch(self):
+    def test__delete_bill(self):
         response = self.client.delete(reverse('bills:bills-detail', args=[self.bill.id]))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
