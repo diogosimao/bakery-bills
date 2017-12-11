@@ -12,8 +12,13 @@ class TimestampedModel(models.Model):
 
 
 class DefaultBaseModel(TimestampedModel):
-    slug = models.SlugField(max_length=36, unique=True, default=uuid.uuid4())
-    description = models.CharField(max_length=255, blank=False, null=False)
+    slug = models.SlugField(max_length=36, unique=True)
+
+    def save(self, **kwargs):
+        if not self.id:
+            self.slug = uuid.uuid4()
+
+        super().save(**kwargs)
 
     class Meta:
         abstract = True
