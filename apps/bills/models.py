@@ -1,14 +1,14 @@
+import uuid
 from django.db import models
-from bakery.core.models import TimestampedModel
 
+from bakery.core.models import DefaultBaseModel
 from apps.branches.models import Branch
 
 
-class Bill(TimestampedModel):
-    description = models.CharField(max_length=255, blank=False, null=False)
+class Bill(DefaultBaseModel):
     debit = models.DecimalField(max_digits=8, decimal_places=2, blank=False, null=False)
     due_date = models.DateField(blank=False, null=False)
-    branch = models.ForeignKey(Branch, related_name='bills', on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch, related_name='bills', on_delete=models.CASCADE, to_field='slug')
 
     def __str__(self):
         return self.description
@@ -19,8 +19,9 @@ class Bill(TimestampedModel):
 
 
 class Payment(models.Model):
+    slug = models.SlugField(max_length=36, unique=True, default=uuid.uuid4())
     payment_date = models.DateField(blank=False, null=False)
-    bill = models.OneToOneField(Bill, related_name='payments', on_delete=models.CASCADE)
+    bill = models.OneToOneField(Bill, related_name='payments', on_delete=models.CASCADE, to_field='slug')
 
     def __str__(self):
         return '{}'.format(self.payment_date)

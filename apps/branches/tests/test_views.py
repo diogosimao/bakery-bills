@@ -24,7 +24,7 @@ class ReadBranchTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test__read_branch_detail(self):
-        response = self.client.get(reverse('branches:branches-detail', args=[self.branch.id]))
+        response = self.client.get(reverse('branches:branches-detail', args=[self.branch.slug]))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -35,7 +35,7 @@ class UpdateBranchTest(APITestCase):
         self.data.update({'description': 'Loja principal'})
 
     def test__update_branch(self):
-        response = self.client.put(reverse('branches:branches-detail', args=[self.branch.id]), self.data)
+        response = self.client.put(reverse('branches:branches-detail', args=[self.branch.slug]), self.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -44,6 +44,6 @@ class DeleteBranchTest(APITestCase):
         self.branch = create_branch(**BRANCH_SAMPLE_TEST_DICT)
 
     def test__delete_branch(self):
-        response = self.client.delete(reverse('branches:branches-detail', args=[self.branch.id]))
+        response = self.client.delete(reverse('branches:branches-detail', args=[self.branch.slug]))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 

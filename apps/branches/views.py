@@ -15,7 +15,7 @@ class BranchViewSet(viewsets.ModelViewSet):
     create:
     Create a new branch instance.
     """
-
+    lookup_field = 'slug'
     queryset = Branch.objects.all()
     serializer_class = BranchSerializer
 

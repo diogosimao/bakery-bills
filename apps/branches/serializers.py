@@ -9,5 +9,6 @@ class BranchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Branch
-        fields = ('description', 'address', 'city', 'state', 'bills')
+        fields = ('slug', 'description', 'address', 'city', 'state', 'bills')
+        read_only_fields = ('slug',)
 

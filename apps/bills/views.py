@@ -16,7 +16,7 @@ class BillViewSet(viewsets.ModelViewSet):
     create:
     Create a new bill instance.
     """
-
+    lookup_field = 'slug'
     queryset = Bill.objects.all()
     serializer_class = BillSerializer
 
@@ -32,7 +32,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
     create:
     Create a new payment instance.
     """
-
+    lookup_field = 'slug'
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
 
