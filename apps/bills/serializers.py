@@ -3,18 +3,19 @@ from rest_framework import serializers
 from .models import Bill, Payment
 
 
-class BillSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Bill
-        fields = ('slug', 'description', 'debit', 'due_date', 'branch')
-        read_only_fields = ('slug', )
-
-
 class PaymentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Payment
-        fields = ('slug', 'payment_date')
-        read_only_fields = ('slug', 'bill')
+        fields = ('slug', 'payment_date', 'bill')
+        read_only_fields = ('slug', )
+
+
+class BillSerializer(serializers.ModelSerializer):
+    payment = PaymentSerializer(read_only=True, source='payments')
+
+    class Meta:
+        model = Bill
+        fields = ('slug', 'description', 'debit', 'due_date', 'branch', 'payment')
+        read_only_fields = ('slug', 'payment')
 

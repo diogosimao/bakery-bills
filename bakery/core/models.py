@@ -12,7 +12,7 @@ class TimestampedModel(models.Model):
 
 
 class DefaultBaseModel(TimestampedModel):
-    slug = models.SlugField(max_length=36, unique=True)
+    slug = models.SlugField(max_length=36, unique=True, null=False, blank=False)
 
     def save(self, **kwargs):
         if not self.id:
