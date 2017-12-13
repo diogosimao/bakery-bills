@@ -12,10 +12,9 @@ class PaymentSerializer(serializers.ModelSerializer):
 
 
 class BillSerializer(serializers.ModelSerializer):
-    payment = PaymentSerializer(read_only=True, source='payments')
 
     class Meta:
         model = Bill
-        fields = ('slug', 'description', 'debit', 'due_date', 'branch', 'payment')
-        read_only_fields = ('slug', 'payment')
+        fields = ('slug', 'description', 'debit', 'due_date', 'branch')
+        read_only_fields = ('slug', )
 
