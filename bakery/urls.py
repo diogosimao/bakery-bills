@@ -13,10 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import debug_toolbar
+
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
+from material.frontend import urls as frontend_urls
 
+from apps.branches.views import SubscribeView
 
 bills_patterns = ([
                       url('', include('apps.bills.urls')),
@@ -27,9 +31,12 @@ branches_patterns = ([
                      ], 'branches')
 
 urlpatterns = [
+    url(r'^__debug__/', include(debug_toolbar.urls)),
     url(r'^admin/', admin.site.urls),
+    url(r'', include(frontend_urls)),
     url(r'^docs/', include_docs_urls(title='Bakery bills API Documentation', public=False)),
     url(r'^api/', include(bills_patterns)),
     url(r'^api/', include(branches_patterns)),
+    url(r'^branches/$', SubscribeView.as_view(), name='branches')
 ]
 
