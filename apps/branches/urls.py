@@ -17,10 +17,10 @@ branches_patterns = ([
 
 urlpatterns = [
     url(r'^schema/$', schema_view),
-    url(r'^', include(router.urls)),
-    url(r'^$', generic.RedirectView.as_view(url='^'), name="index"),
+    url(r'^$', generic.RedirectView.as_view(url='branches_crud/'), name="index"),
     url(r'^branches_crud/', include(branches_patterns)),
     url(r'^branches_custom/$', generic.FormView.as_view(
         form_class=BranchForm, success_url='/branches_custom/', template_name="branches.html")),
+    url(r'^', include(router.urls)),
 ]
 

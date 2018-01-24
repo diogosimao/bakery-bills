@@ -22,9 +22,9 @@ bills_patterns = ([
 
 urlpatterns = [
     url(r'^schema/$', schema_view),
-    url(r'^', include(bills_router.urls)),
-    url(r'^$', generic.RedirectView.as_view(url='^'), name="index"),
+    url(r'^$', generic.RedirectView.as_view(url='bills_crud/'), name="index"),
     url(r'^bills_crud/', include(bills_patterns)),
     url(r'^bills_custom/$', generic.FormView.as_view(
         form_class=BillForm, success_url='/bills_custom/', template_name="bills.html")),
+    url(r'^', include(bills_router.urls)),
 ]
