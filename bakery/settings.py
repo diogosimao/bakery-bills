@@ -35,12 +35,14 @@ INSTALLED_APPS = [
     'material',
     'material.frontend',
     'material.admin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'apps.bills',
     'apps.branches',
     'rest_framework',
@@ -65,7 +67,10 @@ ROOT_URLCONF = 'bakery.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'apps', 'branches', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'apps', 'branches', 'templates'),
+                 os.path.join(BASE_DIR, 'apps', 'bills', 'templates'),
+                 os.path.join(BASE_DIR, 'apps', 'templates'),
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,18 +148,11 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'static'),
-    ('node_modules', os.path.join(BASE_DIR, 'node_modules')),
-]
-
 APPEND_SLASH = True
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
     )
 }
 

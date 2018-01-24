@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
 from rest_framework import viewsets
+from material.frontend.views import ModelViewSet
 
 from .forms import BranchForm
 from .models import Branch
@@ -28,8 +29,12 @@ class BranchViewSet(viewsets.ModelViewSet):
         return HttpResponseRedirect(redirect_to=reverse_lazy('branches'))
 
 
-class SubscribeView(generic.FormView):
+class BranchesFormView(generic.FormView):
     template_name = 'branches.html'
     form_class = BranchForm
     success_url = reverse_lazy('branches')
+
+
+class BranchesCRUDFormView(ModelViewSet):
+    model = Branch
 

@@ -1,5 +1,6 @@
 from django.apps import AppConfig
+from material.frontend.apps import ModuleMixin
 
 
-class BillsConfig(AppConfig):
-    name = 'bills'
+class BillsConfig(ModuleMixin, AppConfig):
+    name = 'apps.bills'

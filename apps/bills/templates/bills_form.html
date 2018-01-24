@@ -1,0 +1,18 @@
+{% extends 'base_form.html' %}
+
+{% block formblock %}
+    <form method="POST" enctype="multipart/form-data" action="{% url 'bills:bills-list' %}">
+        <div class="card-content">
+            <span class="card-title grey-text text-darken-2">{% block formtitle %}Form{% endblock %}</span>
+            {% csrf_token %}
+            {% block formbody %}{% endblock %}
+        </div>
+        <div class="card-action">
+            {% block actions %}
+            <div class="right-align">
+                {% block formbuttons %}<button class="btn btn-primary" type="submit">Submit</button>{% endblock %}
+            </div>
+            {% endblock %}
+        </div>
+    </form>
+{% endblock %}

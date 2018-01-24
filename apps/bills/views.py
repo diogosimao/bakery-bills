@@ -1,3 +1,6 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+from material.frontend.views import ModelViewSet
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets, status
@@ -14,11 +17,11 @@ class MultipleFieldLookupMixin(object):
     def get_object(self):
         queryset = self.get_queryset()             # Get the base queryset
         queryset = self.filter_queryset(queryset)  # Apply any filter backends
-        filter = {}
+        filter_ = {}
         for field in self.lookup_fields:
-            if self.kwargs[field]: # Ignore empty fields.
-                filter[field] = self.kwargs[field]
-        obj = get_object_or_404(queryset, **filter)  # Lookup the object
+            if self.kwargs[field]:  # Ignore empty fields.
+                filter_[field] = self.kwargs[field]
+        obj = get_object_or_404(queryset, **filter_)  # Lookup the object
         self.check_object_permissions(self.request, obj)
         return obj
 
@@ -37,6 +40,10 @@ class BillViewSet(viewsets.ModelViewSet):
     lookup_field = 'slug'
     queryset = Bill.objects.all()
     serializer_class = BillSerializer
+
+    def create(self, request, *args, **kwargs):
+        response = super(BillViewSet, self).create(request, *args, **kwargs)
+        return HttpResponseRedirect(redirect_to=reverse_lazy('bills'))
 
 
 class PaymentViewSet(MultipleFieldLookupMixin,
@@ -77,4 +84,8 @@ class PaymentViewSet(MultipleFieldLookupMixin,
             instance = self.get_queryset()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
+
+
+class BillsCRUDFormView(ModelViewSet):
+    model = Bill
 

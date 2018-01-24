@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from .models import Branch
-from apps.bills.serializers import BillSerializer
 
 
 class BranchSerializer(serializers.ModelSerializer):

@@ -16,27 +16,26 @@ Including another URLconf
 import debug_toolbar
 
 from django.conf.urls import include, url
-from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
 from material.frontend import urls as frontend_urls
 
-from apps.branches.views import SubscribeView
-
 bills_patterns = ([
-                      url('', include('apps.bills.urls')),
-                  ], 'bills')
+                          url('', include('apps.bills.urls')),
+                      ], 'bills')
 
 branches_patterns = ([
-                         url('', include('apps.branches.urls')),
-                     ], 'branches')
+                             url('', include('apps.branches.urls')),
+                         ], 'branches')
+
+material_patterns = ([
+                        url('', include(frontend_urls)),
+                     ], '')
 
 urlpatterns = [
     url(r'^__debug__/', include(debug_toolbar.urls)),
-    url(r'^admin/', admin.site.urls),
-    url(r'', include(frontend_urls)),
     url(r'^docs/', include_docs_urls(title='Bakery bills API Documentation', public=False)),
+    url(r'', include(material_patterns)),
     url(r'^api/', include(bills_patterns)),
     url(r'^api/', include(branches_patterns)),
-    url(r'^branches/$', SubscribeView.as_view(), name='branches')
 ]
 
