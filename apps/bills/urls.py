@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^bills_crud/', include(bills_patterns)),
     url(r'^bills_custom/$', generic.FormView.as_view(
         form_class=BillForm, success_url='/bills_custom/', template_name="bills.html")),
+    url(r'^', include(router.urls)),
     url(r'^', include(bills_router.urls)),
 ]
