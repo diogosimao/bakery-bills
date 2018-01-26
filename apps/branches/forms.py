@@ -21,9 +21,10 @@ class BranchForm(forms.Form):
     """)
 
     buttons = Template("""
-        <button class="btn btn-primary pull-right" type="submit" 
-        ng-click="redirectTo()">Add branch</button>
+        <button class="btn btn-primary pull-right" type="submit">Add branch</button>
     """)
 
     title = "Add branch"
+
+    action = Template("{{view.form_action}}")
 

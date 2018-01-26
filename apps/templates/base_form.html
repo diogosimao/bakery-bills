@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load material_form %}
 
 {% block extrahead %}
 <style type="text/css">
@@ -16,11 +15,24 @@
 <div class="row valign change-form">
     <div class="{% block formclass %}col s12 m8 offset-m2 l8 offset-l2{% endblock %}">
         <div class="card">
-            {% block formblock %} {% endblock %}
+            <form method="POST" enctype="multipart/form-data" action="{% block formaction %}/{% endblock %}">
+                <div class="card-content">
+                    <span class="card-title grey-text text-darken-2">{% block formtitle %}Form{% endblock %}</span>
+                    {% csrf_token %}
+                    {% block formbody %}{% endblock %}
+                </div>
+                <div class="card-action">
+                    {% block actions %}
+                    <div class="right-align">
+                        {% block formbuttons %}<button class="btn btn-primary" type="submit">Submit</button>{% endblock %}
+                    </div>
+                    {% endblock %}
+                </div>
+            </form>
         </div>
     </div>
 </div>
 {% block result %}
 {% endblock %}
-{% endblock content %}
+{% endblock %}
 

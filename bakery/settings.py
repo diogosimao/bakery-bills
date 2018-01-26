@@ -67,10 +67,11 @@ ROOT_URLCONF = 'bakery.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'apps', 'branches', 'templates'),
-                 os.path.join(BASE_DIR, 'apps', 'bills', 'templates'),
-                 os.path.join(BASE_DIR, 'apps', 'templates'),
-                 ],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'apps', 'templates'),
+            os.path.join(BASE_DIR, 'apps', 'branches', 'templates', 'branches'),
+            os.path.join(BASE_DIR, 'apps', 'bills', 'templates', 'bills'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

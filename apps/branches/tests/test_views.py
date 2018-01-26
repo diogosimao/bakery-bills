@@ -11,7 +11,7 @@ class CreateBranchTest(APITestCase):
         self.data = BRANCH_SAMPLE_TEST_DICT
 
     def test__create_branch(self):
-        response = self.client.post(reverse('branches:branches-list'), self.data)
+        response = self.client.post(reverse('branches_api:branches_api-list'), self.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 

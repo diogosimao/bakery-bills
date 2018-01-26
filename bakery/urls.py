@@ -21,11 +21,11 @@ from material.frontend import urls as frontend_urls
 
 bills_patterns = ([
                           url('', include('apps.bills.urls')),
-                      ], 'bills')
+                      ], 'bills_api')
 
 branches_patterns = ([
                              url('', include('apps.branches.urls')),
-                         ], 'branches')
+                         ], 'branches_api')
 
 material_patterns = ([
                         url('', include(frontend_urls)),

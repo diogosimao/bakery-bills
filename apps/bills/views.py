@@ -1,3 +1,4 @@
+from django.views.generic import FormView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from material.frontend.views import ModelViewSet
@@ -5,6 +6,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
+from .forms import BillForm
 from .models import Bill, Payment
 from .serializers import BillSerializer, PaymentSerializer
 
@@ -43,7 +45,7 @@ class BillViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         response = super(BillViewSet, self).create(request, *args, **kwargs)
-        return HttpResponseRedirect(redirect_to=reverse_lazy('bills'))
+        return HttpResponseRedirect(redirect_to=reverse_lazy('bills:bills_custom'))
 
 
 class PaymentViewSet(MultipleFieldLookupMixin,
@@ -88,4 +90,16 @@ class PaymentViewSet(MultipleFieldLookupMixin,
 
 class BillsCRUDFormView(ModelViewSet):
     model = Bill
+
+
+class BillCreate(FormView):
+    template_name = 'create_form.html'
+    model = Bill
+    form_class = BillForm
+    form_action = reverse_lazy('bills_api:bills_api-list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_action'] = self.form_action
+        return context
 

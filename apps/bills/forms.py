@@ -2,12 +2,14 @@ from django import forms
 from django.template import Template
 from material import Layout
 
+from apps.branches.models import Branch
+
 
 class BillForm(forms.Form):
     description = forms.CharField()
     debit = forms.DecimalField()
     due_date = forms.DateField()
-    branch = forms.CharField()
+    branch = forms.ModelChoiceField(queryset=Branch.objects.all(), to_field_name="slug")
 
     layout = Layout('description', 'debit', 'due_date', 'branch',)
 
@@ -21,9 +23,10 @@ class BillForm(forms.Form):
     """)
 
     buttons = Template("""
-        <button class="btn btn-primary pull-right" type="submit" 
-        ng-click="redirectTo()">Add bill</button>
+        <button class="btn btn-primary pull-right" type="submit">Add bill</button>
     """)
 
     title = "Add bill"
+
+    action = Template("{{view.form_action}}")
 

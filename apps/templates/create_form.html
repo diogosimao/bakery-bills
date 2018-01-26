@@ -1,4 +1,5 @@
-{% extends 'bills_form.html' %}
+{% extends 'base_form.html' %}
+{% load material_form %}
 
 {% block extrahead %}
 <style type="text/css">
@@ -12,6 +13,10 @@
 
 {% block formbody %}
     {% include form.template %}
+{% endblock %}
+
+{% block formaction %}
+    {% include form.action %}
 {% endblock %}
 
 {% block formbuttons %}

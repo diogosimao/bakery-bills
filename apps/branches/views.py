@@ -1,10 +1,10 @@
+from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views import generic
 from rest_framework import viewsets
 from material.frontend.views import ModelViewSet
 
-from .forms import BranchForm
+from apps.branches.forms import BranchForm
 from .models import Branch
 from .serializers import BranchSerializer
 
@@ -26,15 +26,20 @@ class BranchViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         response = super(BranchViewSet, self).create(request, *args, **kwargs)
-        return HttpResponseRedirect(redirect_to=reverse_lazy('branches'))
-
-
-class BranchesFormView(generic.FormView):
-    template_name = 'branches.html'
-    form_class = BranchForm
-    success_url = reverse_lazy('branches')
+        return HttpResponseRedirect(redirect_to=reverse_lazy('branches:branches_custom'))
 
 
 class BranchesCRUDFormView(ModelViewSet):
     model = Branch
 
+
+class BranchCreate(FormView):
+    template_name = 'create_form.html'
+    model = Branch
+    form_class = BranchForm
+    form_action = reverse_lazy('branches_api:branches_api-list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_action'] = self.form_action
+        return context
