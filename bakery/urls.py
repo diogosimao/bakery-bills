@@ -16,6 +16,7 @@ Including another URLconf
 import debug_toolbar
 
 from django.conf.urls import include, url
+from django.shortcuts import render
 from rest_framework.documentation import include_docs_urls
 from material.frontend import urls as frontend_urls
 
@@ -31,11 +32,17 @@ material_patterns = ([
                         url('', include(frontend_urls)),
                      ], '')
 
+
+def index_view(request):
+    return render(request, 'index.html')
+
+
 urlpatterns = [
     url(r'^__debug__/', include(debug_toolbar.urls)),
     url(r'^docs/', include_docs_urls(title='Bakery bills API Documentation', public=False)),
     url(r'', include(material_patterns)),
     url(r'^api/', include(bills_patterns)),
     url(r'^api/', include(branches_patterns)),
+    url(r'^$', index_view, name='index'),
 ]
 

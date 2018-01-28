@@ -1,0 +1,174 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1">
+    <title>Bakery-bills</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/idea.min.css">
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/python.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/django.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $('.slider').slider({height:160+$(window).width()/6});
+          $('.scrollspy').scrollSpy();
+          hljs.initHighlightingOnLoad();
+          $('.modal-trigger').leanModal();
+          $('ul.tabs').tabs();
+      });
+    </script>
+
+    <script type="text/javascript">
+      if (navigator.appVersion.indexOf("Win")!=-1) {
+           document.write('<link rel="stylesheet" type="text/css" href="{% static 'material/css/robotofix.css' %}">');
+      }
+    </script>
+
+    <style type="text/css">
+      html, body { background: #e5e5e5; height: 100%; }
+
+      nav {
+          background-image: url({% static 'img/nav_background.png' %});
+          width: 100%;
+          height: 150px;
+          background-size: 100% 100%;
+      }
+
+      footer {
+          background-image: url({% static 'img/footer_background.png' %});
+          width: 100%;
+          height: 200px;
+          background-size: 100% 100%;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+          font-weight: 300;
+      }
+
+      main {
+          margin-bottom: -150px;
+      }
+
+      main .container {
+          position: relative; top: -200px;
+      }
+
+      .card-title {
+          font-size: 36px;
+      }
+
+      .card .card-action {
+          border-top: none;
+          padding-top: 10px;
+      }
+
+      .card a {
+          color: #1e88e5;
+      }
+
+      .modal {
+          background-color: #fff
+      }
+
+      .modal .modal-footer {
+          background-color: #fff
+      }
+
+      @media only screen and (max-width : 600px) {
+          .container.expand-on-small-only {
+              width: 100% !important;
+              padding: 0 0.8rem  !important;
+          }
+      }
+    </style>
+  </head>
+  <body>
+      <header>
+          <nav class="white darken-2">
+              <div class="nav-wrapper">
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+                      <li><a target="_blank" href=""><i class="zmdi zmdi-github zmdi-hc-2x"></i></a></li>
+                      <li><a target="_blank" href=""><i class="zmdi zmdi-twitter zmdi-hc-2x"></i></a></li>
+                  </ul>
+              </div>
+          </nav>
+      </header>
+      <main>
+          <div class="container expand-on-small-only">
+               <div class="row">
+                   <div class="col s12">
+                       <div class="card">
+                            <div class="card-content">
+                                <div class="row" style="padding:50px" align="center" >
+                                  <div class="row">
+                                      <img src="{% static 'img/logo.png' %}" height="120px">
+                                  </div>
+                                  <div class="row">
+                                    <span class="card-title
+                                        black-text">Bakery Bills</span>
+                                        <h6>controller</h6>
+                                  </div>
+                                </div>
+                                <div class="card-content">
+
+                                        <div class="divider"></div>
+                                        <div id="branches" class="section scrollspy">
+                                            <h5>Custom forms</h5>
+                                            <h6>For branches insert</h6>
+                                            <object type="text/html" data="{% url 'branches:branches_custom' %}" style="width:100%; height:490px; margin:1%;"> </object>
+                                        </div>
+                                        <div class="divider"></div>
+                                        <div  id="bills" class="section scrollspy">
+                                            <h6>For bills insert</h6><br/>
+                                            <object type="text/html" data="{% url 'bills:bills_custom' %}" style="width:100%; height:490px; margin:1%;"> </object>
+                                        </div>
+                                        <div class="divider"></div>
+                                        <div id="payments" class="section scrollspy">
+                                            <h6>For payments insert</h6><br/>
+                                            <object type="text/html" data="" style="width:100%; height:100%; margin:1%;"> </object>
+                                        </div>
+
+                                        <div class="divider"></div>
+                                        <div  id="admin" class="section scrollspy center-align">
+                                            <h5><br/><a href="/branches/branches_crud/" style="text-transform:none">Material ERP CRUD-like forms</a><br/><br/></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+                   </div>
+
+               </div>
+          </div>
+      </main>
+      <footer class="page-footer white darken-2">
+          <div class="container">
+              <div class="row">
+                  <div class="col l5 m6 s12">
+                  </div>
+                  <div class="col l3 m6 s12">
+                  </div>
+                  <div class="col l4 m6 s12">
+                  </div>
+              </div>
+          </div>
+      </footer>
+
+      <ul id="content" class="section table-of-contents hide-on-med-and-down" style="position:fixed; top: 300px; left: 30px">
+        <li><a href="#branches">Branches</a></li>
+        <li><a href="#bills">Bills</a></li>
+        <li><a href="#payments">Payments</a></li>
+        <li><a href="#admin">Admin</a></li>
+      </ul>
+
+
+  </body>
+</html>
