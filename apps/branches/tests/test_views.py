@@ -10,7 +10,7 @@ class CreateBranchTest(APITestCase):
     def setUp(self):
         self.data = BRANCH_SAMPLE_TEST_DICT
 
-    def test__create_branch(self):
+    def test__api_create_branch(self):
         response = self.client.post(reverse('branches_api:branches_api-list'), self.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -19,12 +19,12 @@ class ReadBranchTest(APITestCase):
     def setUp(self):
         self.branch = create_branch(**BRANCH_SAMPLE_TEST_DICT)
 
-    def test__read_branch_list(self):
-        response = self.client.get(reverse('branches:branches-list'))
+    def test__api_read_branch_list(self):
+        response = self.client.get(reverse('branches_api:branches_api-list'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test__read_branch_detail(self):
-        response = self.client.get(reverse('branches:branches-detail', args=[self.branch.slug]))
+    def test__api_read_branch_detail(self):
+        response = self.client.get(reverse('branches_api:branches_api-detail', args=[self.branch.slug]))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -34,8 +34,8 @@ class UpdateBranchTest(APITestCase):
         self.data = BranchSerializer(self.branch).data
         self.data.update({'description': 'Loja principal'})
 
-    def test__update_branch(self):
-        response = self.client.put(reverse('branches:branches-detail', args=[self.branch.slug]), self.data)
+    def test__api_update_branch(self):
+        response = self.client.put(reverse('branches_api:branches_api-detail', args=[self.branch.slug]), self.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -43,7 +43,7 @@ class DeleteBranchTest(APITestCase):
     def setUp(self):
         self.branch = create_branch(**BRANCH_SAMPLE_TEST_DICT)
 
-    def test__delete_branch(self):
-        response = self.client.delete(reverse('branches:branches-detail', args=[self.branch.slug]))
+    def test__api_delete_branch(self):
+        response = self.client.delete(reverse('branches_api:branches_api-detail', args=[self.branch.slug]))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
