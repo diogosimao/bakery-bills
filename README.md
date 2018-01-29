@@ -1,8 +1,8 @@
 # bakery-bills
 
-## Heroku sample
+## Hosted at Heroku
 
-- Available on [https://shielded-beach-30451.herokuapp.com/](https://shielded-beach-30451.herokuapp.com/)
+- Available on [https://bakery-bills.herokuapp.com/](https://bakery-bills.herokuapp.com/)
 
 ## API Documentation
 
