@@ -9,6 +9,7 @@ django-filter==1.1.0
 django-material==1.2.0
 djangorestframework==3.7.7
 drf-nested-routers==0.90.0
+gunicorn==19.7.1
 idna==2.6
 itypes==1.1.0
 Jinja2==2.10
@@ -20,7 +21,9 @@ Pygments==2.2.0
 pytz==2017.3
 requests==2.18.4
 simplejson==3.13.2
+six==1.11.0
 sqlparse==0.2.4
 uritemplate==3.0.0
 urllib3==1.22
 whitenoise==3.3.1
+wstools==0.4.5
