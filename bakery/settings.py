@@ -11,20 +11,31 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import environ
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PROJECT_ROOT = os.path.join(BASE_DIR, 'bakery')
+root = environ.Path(__file__)
+env = environ.Env(DEBUG=(bool, False),
+                  SECRET_KEY=(str, ''),
+                  DATABASE_URL=(str, ''),
+                  HIDE_DOCS=(bool, False))  # set default values and casting
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
+BASE_DIR = (root - 2)()
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6n%mj$jl(j&v$83o2v-kpjuk^bg)qy9-r%%kw%sk0h11e=tutw'
+PROJECT_ROOT = (root - 1)()
+
+SECRET_KEY = env('SECRET_KEY')
+
+if not SECRET_KEY:
+    # SECURITY WARNING: this should not and won't be used in production environment
+    SECRET_KEY = '6n%mj$jl(j&v$83o2v-kpjuk^bg)qy9-r%%kw%sk0h11e=tutw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
+
+DATABASES = {
+    'default': env.db('DATABASE_URL'),
+}
 
 ALLOWED_HOSTS = ['*']
 
@@ -97,26 +108,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'bakery.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bakery-bills',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    },
-    'extra': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

@@ -1,5 +1,9 @@
 # bakery-bills
 
+## Heroku sample
+
+- Available on [https://shielded-beach-30451.herokuapp.com/](https://shielded-beach-30451.herokuapp.com/)
+
 ## API Documentation
 
 - Available on [http://localhost:8000/docs/](http://127.0.0.1:8000/docs/)
