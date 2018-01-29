@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3f0e46406cd82f8ce5db95616700ddc8eeb2e4a66c2da871b47966d462add626"
+            "sha256": "4843904ea23ce0ee58ec7c60692b3229201eab76f2219ac3e4299711709563f6"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -116,6 +116,13 @@
             ],
             "version": "==1.9.1"
         },
+        "django-environ": {
+            "hashes": [
+                "sha256:e9c171b9d5f540e6f3bc42866941d9cd0bd77fb110a7c13a7c4857a2c08cfa40",
+                "sha256:ee2f8405d83137e3328b26b3de01bd715b5395fca22feb919dcc905fb6099cfa"
+            ],
+            "version": "==0.4.4"
+        },
         "django-filter": {
             "hashes": [
                 "sha256:ea204242ea83790e1512c9d0d8255002a652a6f4986e93cee664f28955ba0c22",
@@ -143,6 +150,14 @@
                 "sha256:818fcc37b6cafff52f4afae012b8de85970a1b931f1e47c2f07a24fd141eb476"
             ],
             "version": "==0.90.0"
+        },
+        "environ": {
+            "hashes": [
+                "sha256:9266e62dd8004f3bf181b24c97aa129844e7e7ec87bf3ed06ef3888293212011",
+                "sha256:4df7f1dfeb7d1c988d2e19a8bd5d547a526e0400aeb35adf732032472f35dcb0",
+                "sha256:052ded34331655b9c7982abd5681a066b9aaf9adf33b3412c7e842ce959e40b0"
+            ],
+            "version": "==1.0"
         },
         "gunicorn": {
             "hashes": [
@@ -279,6 +294,13 @@
             ],
             "version": "==3.13.2"
         },
+        "six": {
+            "hashes": [
+                "sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb",
+                "sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
+            ],
+            "version": "==1.11.0"
+        },
         "sqlparse": {
             "hashes": [
                 "sha256:d9cf190f51cbb26da0412247dfe4fb5f4098edb73db84e02f9fc21fdca31fed4",
@@ -307,6 +329,13 @@
                 "sha256:9d81515f2b5b27051910996e1e860b1332e354d9e7bcf30c98f21dcb6713e0dd"
             ],
             "version": "==3.3.1"
+        },
+        "wstools": {
+            "hashes": [
+                "sha256:4125b17258e0d2808d4b50f8db3d63b707340188dac79eb49730bd5ce12b1677",
+                "sha256:499760d87d9bb62fb937669bb9acb2de8a6393dcce3c5fbd3bc693b4a7bdd4ba"
+            ],
+            "version": "==0.4.5"
         }
     },
     "develop": {}
