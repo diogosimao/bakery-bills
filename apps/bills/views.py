@@ -1,3 +1,5 @@
+import json
+
 from django.views.generic import FormView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -72,7 +74,8 @@ class PaymentViewSet(MultipleFieldLookupMixin,
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(json.dumps({'msg': str(reverse_lazy('bills:payments_custom'))}),
+                        status=status.HTTP_201_CREATED, headers=headers, content_type="application/json")
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -109,12 +112,13 @@ class PaymentsCRUDFormView(ModelViewSet):
 
 
 class PaymentCreate(FormView):
-    template_name = 'create_form.html'
+    template_name = 'bills/payments_create_form.html'
     model = Payment
     form_class = PaymentForm
-    form_action = ""#reverse_lazy('bills_api:bills_api-payment-list')#, kwargs={'slug': Payment.bill})
+    form_action = reverse_lazy('bills_api:bill_api-payment-list', kwargs={'bill_slug': 'bill_slug'})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form_action'] = self.form_action
         return context
+

@@ -34,13 +34,14 @@ class BillForm(forms.Form):
 
 class PaymentForm(forms.Form):
     payment_date = forms.DateField()
-    bill = forms.ModelChoiceField(queryset=Bill.objects.all(), to_field_name="slug")
+    bill = forms.ModelChoiceField(
+        queryset=Bill.objects.select_related('payments').filter(payments__isnull=True), to_field_name="slug")
 
-    layout = Layout('payment_date', 'bill')
+    layout = Layout('payment_date', 'bill',)
 
     template = Template("""
     {% form %}
-        {% part form.payment_date prefix %}<i class="material-icons prefix">calendar</i>{% endpart %}
+        {% part form.payment_date prefix %}<i class="material-icons prefix">date_range</i></i>{% endpart %}
         {% part form.bill prefix %}<i class="material-icons prefix">receipt</i>{% endpart %}
     {% endform %}
     """)
