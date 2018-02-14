@@ -2,6 +2,7 @@ from django import forms
 from django.template import Template
 from material import Layout
 
+from apps.bills.models import Bill
 from apps.branches.models import Branch
 
 
@@ -29,4 +30,26 @@ class BillForm(forms.Form):
     title = "Add bill"
 
     action = Template("{{view.form_action}}")
+
+
+class PaymentForm(forms.Form):
+    payment_date = forms.DateField()
+    bill = forms.ModelChoiceField(queryset=Bill.objects.all(), to_field_name="slug")
+
+    layout = Layout('payment_date', 'bill')
+
+    template = Template("""
+    {% form %}
+        {% part form.payment_date prefix %}<i class="material-icons prefix">calendar</i>{% endpart %}
+        {% part form.bill prefix %}<i class="material-icons prefix">receipt</i>{% endpart %}
+    {% endform %}
+    """)
+
+    buttons = Template("""
+        <button class="btn btn-primary pull-right" type="submit">Register payment</button>
+    """)
+
+    title = "Register Payment"
+
+    action = Template("{{ view.form_action }}")
 

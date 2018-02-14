@@ -6,7 +6,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
-from .forms import BillForm
+from .forms import BillForm, PaymentForm
 from .models import Bill, Payment
 from .serializers import BillSerializer, PaymentSerializer
 
@@ -103,3 +103,18 @@ class BillCreate(FormView):
         context['form_action'] = self.form_action
         return context
 
+
+class PaymentsCRUDFormView(ModelViewSet):
+    model = Payment
+
+
+class PaymentCreate(FormView):
+    template_name = 'create_form.html'
+    model = Payment
+    form_class = PaymentForm
+    form_action = ""#reverse_lazy('bills_api:bills_api-payment-list')#, kwargs={'slug': Payment.bill})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_action'] = self.form_action
+        return context

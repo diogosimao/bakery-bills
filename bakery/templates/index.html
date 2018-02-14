@@ -52,7 +52,7 @@
       .card a {
           color: black;
       }
-
+.panel-heading i{ vertical-align: middle !important; }
     </style>
   </head>
   <body>
@@ -80,15 +80,15 @@
                       <div class="left-align">
                         <h3>Bakery Bills</h3>
                         <h5>Your trade payables controlled</h5>
-                        <br>
-                        <div class="">
-                          <a href="{% url 'branches:branches_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">domain</i>Branches</a>
-                          <a href="{% url 'bills:bills_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">receipt</i>Bills</a>
-                          <a target="main-iframe" class=""><i class="material-icons prefix">payment</i>Payments</a>
-                          <a target="main-iframe" class=""><i class="zmdi zmdi-hc-fw material-icons prefix">apps</i>Admin</a>
-                        </div>
                       </div>
-                    </span>
+                    </span>                    
+                    <br>
+                    <div class="left-align panel-heading">
+                      <a href="{% url 'branches:branches_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">domain</i>Branches</a>
+                      <a href="{% url 'bills:bills_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">receipt</i>Bills</a>
+                      <a href="{% url 'bills:payments_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">payment</i>Payments</a>
+                      <a href="/branches/branches_crud/" class=""><i class="material-icons prefix">apps</i>Admin</a>
+                    </div>
                   </div>
                   <div class="card-content">
                     <div class="divider"></div>
