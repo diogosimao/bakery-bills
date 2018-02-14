@@ -1,0 +1,56 @@
+
+{% extends 'base_form.html' %}
+{% load material_form %}
+
+{% block extrahead %}
+<style type="text/css">
+    {{ form.css }}
+</style>
+<script>
+$(document).ready(function(){  
+  $( "form" ).submit(function( event ) {
+    event.preventDefault();
+    var form_data = $('form').serializeArray();
+    if ( form_data[2].value == '' )
+    {
+      $('input').each(function(){
+        if(($(this).val() == '') || ($(this).val() == "---------")){
+          this.focus();
+        }
+      });
+      return;
+    }
+    
+    var form_action = $('form').attr('action');
+    form_action = form_action.replace('bill_slug', form_data[2].value)
+    $.ajax({
+        url : form_action,
+        type: "POST",
+        data : form_data,
+        success : function(response, status, request) {
+          window.location.replace(request.responseJSON.msg);
+        },
+        error : function(xhr,errmsg,msg) {
+            console.log(msg);
+        }
+    });
+  });
+});
+</script>
+{% endblock %}
+
+{% block formclass %}{{ form.blockclass|default:"col s12 m8 offset-m2 l8 offset-l2" }}{% endblock %}
+
+{% block formtitle %}{{ form.title }}{% endblock %}
+
+{% block formbody %}
+    {% include form.template %}
+{% endblock %}
+
+{% block formaction %}
+    {% include form.action %}
+{% endblock %}
+
+{% block formbuttons %}
+    {% include form.buttons %}
+{% endblock %}

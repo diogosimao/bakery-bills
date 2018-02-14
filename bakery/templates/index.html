@@ -49,11 +49,17 @@
           border-top: none;
           padding-top: 10px;
       }
-
-      .card a {
-          color: black;
+      .panel-heading i { 
+        vertical-align: middle !important; 
       }
-.panel-heading i{ vertical-align: middle !important; }
+      .box{position:relative;}
+      .box a{
+        color: grey;
+        display:inline-block;}
+      .box a:hover{color:black;}
+      .box:hover{
+          z-index:3;
+      }
     </style>
   </head>
   <body>
@@ -84,11 +90,11 @@
                       </div>
                     </span>                    
                     <br>
-                    <div class="left-align panel-heading">
-                      <a href="{% url 'branches:branches_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">domain</i>Branches</a>
-                      <a href="{% url 'bills:bills_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">receipt</i>Bills</a>
-                      <a href="{% url 'bills:payments_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">payment</i>Payments</a>
-                      <a href="/branches/branches_crud/" class=""><i class="material-icons prefix">apps</i>Admin</a>
+                    <div class="nav-wrapper left-align panel-heading">
+                      <span class="box"><a href="{% url 'branches:branches_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">domain</i>Branches</a></span>
+                      <span class="box"><a href="{% url 'bills:bills_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">receipt</i>Bills</a></span>
+                      <span class="box"><a href="{% url 'bills:payments_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">payment</i>Payments</a></span>
+                      <span class="box"><a href="/branches/branches_crud/" class=""><i class="material-icons prefix">apps</i>Admin</a></span>
                     </div>
                   </div>
                   <div class="card-content">
