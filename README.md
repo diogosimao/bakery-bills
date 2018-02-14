@@ -1,5 +1,10 @@
 # bakery-bills
 
+[![Build Status](https://travis-ci.org/diogosimao/bakery-bills.svg?branch=master)](https://travis-ci.org/diogosimao/bakery-bills)
+[![Coverage Status](https://coveralls.io/repos/github/diogosimao/bakery-bills/badge.svg?branch=master)](https://coveralls.io/github/diogosimao/bakery-bills?branch=master)
+[![Code Health](https://landscape.io/github/diogosimao/bakery-bills/master/landscape.svg?style=flat)](https://landscape.io/github/diogosimao/bakery-bills/master)
+[![Requirements Status](https://requires.io/github/diogosimao/bakery-bills/requirements.svg?branch=master)](https://requires.io/github/diogosimao/bakery-bills/requirements/?branch=master)
+
 ## Hosted at Heroku
 
 - Available on [https://bakery-bills.herokuapp.com/](https://bakery-bills.herokuapp.com/)

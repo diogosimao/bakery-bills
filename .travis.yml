@@ -1,0 +1,16 @@
+language: python
+python:
+  - "3.6"
+  - "nightly"
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+script:
+  - python manage.py makemigrations
+  - python manage.py migrate
+  - python manage.py collectstatic --noinput
+  - coverage run --source=apps,bakery manage.py test
+after_success:
+  - coveralls
+env:
+  - DATABASE_URL=sqlite:////tmp/bakery-tmp-sqlite.db
