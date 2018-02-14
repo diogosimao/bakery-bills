@@ -7,7 +7,7 @@
     initial-scale=1">
     <title>Bakery-bills</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
     {% include 'material/includes/material_css.html' %}
 
@@ -17,7 +17,7 @@
       nav {
           background-image: url({% static 'img/nav_background.png' %});
           width: 100%;
-          height: 63px;
+          height: 65px;
           background-size: 100% 100%;
       }
 
@@ -37,7 +37,7 @@
       }
 
       main .container {
-          position: relative; top: -65px;
+          position: relative; top: -63px;
       }
 
       .card-title {
@@ -84,8 +84,8 @@
                         <div class="">
                           <a href="{% url 'branches:branches_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">domain</i>Branches</a>
                           <a href="{% url 'bills:bills_custom' %}" target="main-iframe" class=""><i class="material-icons prefix">receipt</i>Bills</a>
-                          <a target="main-iframe" class=""><i class="material-icons prefix">payment</i>Payments</a>
-                          <a target="main-iframe" class=""><i class="zmdi zmdi-hc-fw material-icons prefix">apps</i>Admin</a>
+                          <a href="#payments" target="main-iframe" class=""><i class="material-icons prefix">payment</i>Payments</a>
+                          <a href="#admin" target="main-iframe" class=""><i class="zmdi zmdi-hc-fw material-icons prefix">apps</i>Admin</a>
                         </div>
                       </div>
                     </span>
