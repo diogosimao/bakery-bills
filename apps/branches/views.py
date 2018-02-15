@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -26,6 +27,7 @@ class BranchViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         response = super(BranchViewSet, self).create(request, *args, **kwargs)
+        messages.success(request, 'Branch added!')
         return HttpResponseRedirect(redirect_to=reverse_lazy('branches:branches_custom'))
 
 
@@ -40,6 +42,6 @@ class BranchCreate(FormView):
     form_action = reverse_lazy('branches_api:branches_api-list')
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(BranchCreate, self).get_context_data(**kwargs)
         context['form_action'] = self.form_action
         return context

@@ -3,6 +3,7 @@ import json
 from django.views.generic import FormView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.contrib import messages
 from material.frontend.views import ModelViewSet
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
@@ -47,6 +48,7 @@ class BillViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         response = super(BillViewSet, self).create(request, *args, **kwargs)
+        messages.success(request, 'Bill added!')
         return HttpResponseRedirect(redirect_to=reverse_lazy('bills:bills_custom'))
 
 
@@ -68,12 +70,14 @@ class PaymentViewSet(MultipleFieldLookupMixin,
     serializer_class = PaymentSerializer
 
     def create(self, request, *args, **kwargs):
-        data = {**kwargs, **request.data.dict()}
+        data = kwargs
+        data.update(request.data.dict())
         data['bill'] = data.pop('bill_slug')
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        messages.success(request, 'Payment registered!')
         return Response(json.dumps({'msg': str(reverse_lazy('bills:payments_custom'))}),
                         status=status.HTTP_201_CREATED, headers=headers, content_type="application/json")
 

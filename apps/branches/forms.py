@@ -18,6 +18,13 @@ class BranchForm(forms.Form):
         {% part form.city prefix %}<i class="material-icons prefix">map</i>{% endpart %}
         {% part form.state prefix %}<i class="material-icons prefix">map</i>{% endpart %}
     {% endform %}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     """)
 
     buttons = Template("""

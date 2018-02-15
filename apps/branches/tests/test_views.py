@@ -12,7 +12,10 @@ class CreateBranchTest(APITestCase):
 
     def test__api_create_branch(self):
         response = self.client.post(reverse('branches_api:branches_api-list'), self.data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        messages = list(response.wsgi_request._messages)
+        for message in messages:
+            self.assertEqual(str(message), 'Branch added!')
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
 
 
 class ReadBranchTest(APITestCase):

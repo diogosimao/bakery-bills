@@ -21,6 +21,13 @@ class BillForm(forms.Form):
         {% part form.due_date prefix %}<i class="material-icons prefix">date_range</i>{% endpart %}
         {% part form.branch prefix %}<i class="material-icons prefix">domain</i>{% endpart %}
     {% endform %}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     """)
 
     buttons = Template("""
@@ -44,6 +51,13 @@ class PaymentForm(forms.Form):
         {% part form.payment_date prefix %}<i class="material-icons prefix">date_range</i></i>{% endpart %}
         {% part form.bill prefix %}<i class="material-icons prefix">receipt</i>{% endpart %}
     {% endform %}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     """)
 
     buttons = Template("""
