@@ -106,7 +106,7 @@ class BillCreate(FormView):
     form_action = reverse_lazy('bills_api:bills_api-list')
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(BillCreate, self).get_context_data(**kwargs)
         context['form_action'] = self.form_action
         return context
 
@@ -122,7 +122,7 @@ class PaymentCreate(FormView):
     form_action = reverse_lazy('bills_api:bill_api-payment-list', kwargs={'bill_slug': 'bill_slug'})
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(PaymentCreate, self).get_context_data(**kwargs)
         context['form_action'] = self.form_action
         return context
 
