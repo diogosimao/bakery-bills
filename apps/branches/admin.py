@@ -5,5 +5,4 @@ from .models import Branch
 
 @admin.register(Branch)
 class BranchAdmin(admin.ModelAdmin):
-    pass
-
+    exclude = ('slug',)

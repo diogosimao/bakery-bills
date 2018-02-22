@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from rest_framework import viewsets
 from material.frontend.views import ModelViewSet
+from material import LayoutMixin, Layout, Row
 
 from apps.branches.forms import BranchForm
 from .models import Branch
@@ -31,8 +32,11 @@ class BranchViewSet(viewsets.ModelViewSet):
         return HttpResponseRedirect(redirect_to=reverse_lazy('branches:branches_custom'))
 
 
-class BranchesCRUDFormView(ModelViewSet):
+class BranchesCRUDFormView(LayoutMixin, ModelViewSet):
     model = Branch
+    layout = Layout(
+        Row('description', 'address', 'city', 'state'),
+    )
 
 
 class BranchCreate(FormView):

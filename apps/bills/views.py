@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from material.frontend.views import ModelViewSet
+from material import LayoutMixin, Layout, Row
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets, status
@@ -95,8 +96,11 @@ class PaymentViewSet(MultipleFieldLookupMixin,
         return Response(serializer.data)
 
 
-class BillsCRUDFormView(ModelViewSet):
+class BillsCRUDFormView(LayoutMixin, ModelViewSet):
     model = Bill
+    layout = Layout(
+            Row('description', 'debit', 'due_date', 'branch'),
+        )
 
 
 class BillCreate(FormView):
@@ -111,8 +115,11 @@ class BillCreate(FormView):
         return context
 
 
-class PaymentsCRUDFormView(ModelViewSet):
+class PaymentsCRUDFormView(LayoutMixin, ModelViewSet):
     model = Payment
+    layout = Layout(
+            Row('payment_date', 'bill'),
+        )
 
 
 class PaymentCreate(FormView):
