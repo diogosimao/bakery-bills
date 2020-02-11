@@ -8,7 +8,7 @@ name = "pypi"
 [packages]
 
 djangorestframework = "==3.7.7"
-django = "==2.0.2"
+django = "==2.2.10"
 pytz = "==2018.3"
 coreapi = "==2.3.3"
 certifi = "==2018.1.18"
